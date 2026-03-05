@@ -5,16 +5,18 @@ type Props = {
   label: string;
   theme?: 'primary';
   onPress?: () => void;
+  enabled?: boolean;
 };
 
-export default function Button({ label, theme, onPress }: Props) {
+export default function Button({ label, theme, enabled, onPress }: Props) {
   if (theme === 'primary') {
     return (
       <View
         style={styles.buttonContainer}>
         <Pressable
-          style={[styles.button, { backgroundColor: '#689f69' }]}
-          onPress={onPress}>
+          style={[styles.button, { backgroundColor: enabled ? '#689f69' : '#cccccc' }]}
+          onPress={onPress}
+          disabled={!enabled}>
           <FontAwesome name="search" size={18} color="#ffffff" style={styles.buttonIcon} />
           <Text style={[styles.buttonLabel, { color: '#ffffff' }]}>{label}</Text>
         </Pressable>
@@ -33,7 +35,7 @@ export default function Button({ label, theme, onPress }: Props) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 320,
+    width: "100%",
     height: 68,
     marginHorizontal: 20,
     alignItems: 'center',

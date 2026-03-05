@@ -1,9 +1,55 @@
 import Button from '@/components/Button';
+import { Roboto_100Thin } from '@expo-google-fonts/roboto/100Thin';
+import { Roboto_100Thin_Italic } from '@expo-google-fonts/roboto/100Thin_Italic';
+import { Roboto_200ExtraLight } from '@expo-google-fonts/roboto/200ExtraLight';
+import { Roboto_200ExtraLight_Italic } from '@expo-google-fonts/roboto/200ExtraLight_Italic';
+import { Roboto_300Light } from '@expo-google-fonts/roboto/300Light';
+import { Roboto_300Light_Italic } from '@expo-google-fonts/roboto/300Light_Italic';
+import { Roboto_400Regular } from '@expo-google-fonts/roboto/400Regular';
+import { Roboto_400Regular_Italic } from '@expo-google-fonts/roboto/400Regular_Italic';
+import { Roboto_500Medium } from '@expo-google-fonts/roboto/500Medium';
+import { Roboto_500Medium_Italic } from '@expo-google-fonts/roboto/500Medium_Italic';
+import { Roboto_600SemiBold } from '@expo-google-fonts/roboto/600SemiBold';
+import { Roboto_600SemiBold_Italic } from '@expo-google-fonts/roboto/600SemiBold_Italic';
+import { Roboto_700Bold } from '@expo-google-fonts/roboto/700Bold';
+import { Roboto_700Bold_Italic } from '@expo-google-fonts/roboto/700Bold_Italic';
+import { Roboto_800ExtraBold } from '@expo-google-fonts/roboto/800ExtraBold';
+import { Roboto_800ExtraBold_Italic } from '@expo-google-fonts/roboto/800ExtraBold_Italic';
+import { Roboto_900Black } from '@expo-google-fonts/roboto/900Black';
+import { Roboto_900Black_Italic } from '@expo-google-fonts/roboto/900Black_Italic';
+import { useFonts } from '@expo-google-fonts/roboto/useFonts';
 import { Picker } from '@react-native-picker/picker';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 
-export default function LuifelPicker() {
+
+
+type Props = { 
+    onPress: (result: string[]) => void;
+}
+
+export default function LuifelPicker({ onPress }: Props) {
+    let [fontsLoaded] = useFonts({
+        Roboto_100Thin, 
+        Roboto_200ExtraLight, 
+        Roboto_300Light, 
+        Roboto_400Regular, 
+        Roboto_500Medium, 
+        Roboto_600SemiBold, 
+        Roboto_700Bold, 
+        Roboto_800ExtraBold, 
+        Roboto_900Black, 
+        Roboto_100Thin_Italic, 
+        Roboto_200ExtraLight_Italic, 
+        Roboto_300Light_Italic, 
+        Roboto_400Regular_Italic, 
+        Roboto_500Medium_Italic, 
+        Roboto_600SemiBold_Italic, 
+        Roboto_700Bold_Italic, 
+        Roboto_800ExtraBold_Italic, 
+        Roboto_900Black_Italic
+    });
+
     const [selectedBrand, setSelectedBrand] = useState("-1");
     const [selectedModel, setSelectedModel] = useState("-1");
     const [selectedYear, setSelectedYear] = useState("-1");
@@ -2292,7 +2338,9 @@ export default function LuifelPicker() {
             skus: ["443515","443513","502607"]
         }];
     
-    let eanBySKU: { [key: string]: string } = {"249903":"8004815269036","251110":"8004815247898","251111":"8004815220266","268546":"8004815033644","268551":"8004815144807","268553":"8004815411947","268554":"8004815292577","268555":"8004815281236","302851":"8004815098438","302852":"8004815033613","302862":"8004815218751","302864":"8004815208462","336478":"8004815439255","336479":"8004815312848","336484":"8004815217457","336582":"8004815174408","336583":"8004815281342","336584":"8004815290061","340481":"5415182007795","340485":"5415182005012","340539":"5415182007801","340662":"5415182004619","382190":"8004815318192","406921":"8004815336905","413134":"5415182048507","413139":"5415182052191","413144":"5415182048668","413149":"5415182048798","413154":"5415182048927","413164":"5415182048613","413168":"5415182052375","413172":"5415182048842","413177":"5415182048972","413183":"5415182048637","413184":"5415182048736","413185":"5415182048866","413186":"5415182048996","420207":"5415182046336","420241":"5415182046350","435025":"8004815355050","435026":"8004815354749","435027":"8004815354763","443436":"8004815352073","443438":"8004815351717","443440":"8004815351878","443442":"8004815350444","443456":"8004815354701","443457":"8004815354725","443458":"8004815355104","443459":"8004815350451","443460":"8004815355067","443513":"8004815354350","443515":"8004815350925","443516":"8004815354367","443517":"8004815350499","443518":"8004815354640","455373":"8004815349141","459014":"5415182045681","459015":"5415182045698","459025":"5415182045704","459026":"5415182045711","459909":"8004815354343","479416":"8004815363741","488868":"8004815355098","490710":"5415182005050","497020":"8004815348694","502607":"8004815363598","516742":"5415182049290","516746":"5415182049344","516750":"5415182049405","516752":"5415182049436","516754":"5415182049467","516756":"5415182049498","516785":"5415182049733","516787":"5415182049764","516789":"5415182049801","516790":"5415182049825","516791":"5415182049849","518442":"5415182046480","523082":"8004815468965","523084":"8004815390105","523089":"8004815468989","523093":"8004815386689","523097":"8004815095239","523099":"8004815234515","523100":"8004815306304","523107":"8004815348687","523108":"8004815348700","523109":"8004815348717","523110":"8004815452490","523111":"8004815348748","523112":"8004815348762","523114":"8004815363611","523115":"8004815380793","529281":"8004815377625","529295":"8004815383527","529311":"8004815386672","529321":"8004815390143","529324":"8004815386702","541581":"5415182050340","548472":"5415182053006","554524":"8004815401238","554526":"8004815401320","554527":"8004815401337","554569":"8004815404215","554570":"8004815348755","569993":"8004815391249","611824":"5415182005067","612235":"8004815411749","642362":"5415182061438","642363":"5415182061476","681839":"8004815363130","733936":"5415182061599","733937":"5415182061575","733938":"5415182066341","741021":"8004815452568","741022":"8004815452575","748128":"8004815460075","748129":"8004815441524","749134":"5415182066402","749136":"5415182066426","749137":"5415182071017","749251":"5415182058698"};
+    let eanBySKU: { [key: string]: string } = {
+        "249903":"8004815269036","251110":"8004815247898","251111":"8004815220266","268546":"8004815033644","268551":"8004815144807","268553":"8004815411947","268554":"8004815292577","268555":"8004815281236","302851":"8004815098438","302852":"8004815033613","302862":"8004815218751","302864":"8004815208462","336478":"8004815439255","336479":"8004815312848","336484":"8004815217457","336582":"8004815174408","336583":"8004815281342","336584":"8004815290061","340481":"5415182007795","340485":"5415182005012","340539":"5415182007801","340662":"5415182004619","382190":"8004815318192","406921":"8004815336905","413134":"5415182048507","413139":"5415182052191","413144":"5415182048668","413149":"5415182048798","413154":"5415182048927","413164":"5415182048613","413168":"5415182052375","413172":"5415182048842","413177":"5415182048972","413183":"5415182048637","413184":"5415182048736","413185":"5415182048866","413186":"5415182048996","420207":"5415182046336","420241":"5415182046350","435025":"8004815355050","435026":"8004815354749","435027":"8004815354763","443436":"8004815352073","443438":"8004815351717","443440":"8004815351878","443442":"8004815350444","443456":"8004815354701","443457":"8004815354725","443458":"8004815355104","443459":"8004815350451","443460":"8004815355067","443513":"8004815354350","443515":"8004815350925","443516":"8004815354367","443517":"8004815350499","443518":"8004815354640","455373":"8004815349141","459014":"5415182045681","459015":"5415182045698","459025":"5415182045704","459026":"5415182045711","459909":"8004815354343","479416":"8004815363741","488868":"8004815355098","490710":"5415182005050","497020":"8004815348694","502607":"8004815363598","516742":"5415182049290","516746":"5415182049344","516750":"5415182049405","516752":"5415182049436","516754":"5415182049467","516756":"5415182049498","516785":"5415182049733","516787":"5415182049764","516789":"5415182049801","516790":"5415182049825","516791":"5415182049849","518442":"5415182046480","523082":"8004815468965","523084":"8004815390105","523089":"8004815468989","523093":"8004815386689","523097":"8004815095239","523099":"8004815234515","523100":"8004815306304","523107":"8004815348687","523108":"8004815348700","523109":"8004815348717","523110":"8004815452490","523111":"8004815348748","523112":"8004815348762","523114":"8004815363611","523115":"8004815380793","529281":"8004815377625","529295":"8004815383527","529311":"8004815386672","529321":"8004815390143","529324":"8004815386702","541581":"5415182050340","548472":"5415182053006","554524":"8004815401238","554526":"8004815401320","554527":"8004815401337","554569":"8004815404215","554570":"8004815348755","569993":"8004815391249","611824":"5415182005067","612235":"8004815411749","642362":"5415182061438","642363":"5415182061476","681839":"8004815363130","733936":"5415182061599","733937":"5415182061575","733938":"5415182066341","741021":"8004815452568","741022":"8004815452575","748128":"8004815460075","748129":"8004815441524","749134":"5415182066402","749136":"5415182066426","749137":"5415182071017","749251":"5415182058698"
+    };
 
 
     // Initialize variables for the pickers
@@ -2300,19 +2348,39 @@ export default function LuifelPicker() {
     let availableBrands = Array.from(new Set(luifelData.map((x) => x.brand)));
 
     let availableModels = selectedBrand == undefined ? [] : 
-        Array.from(new Set(luifelData.filter((data) => data.brand == selectedBrand).map((x) => x.model)));
+        Array.from(new Set(luifelData.filter((data) => 
+            data.brand == selectedBrand)
+            .map((x) => x.model)));
 
     let availableYears = selectedModel == undefined ? [] :
-        Array.from(new Set(luifelData.filter((data) => data.model == selectedModel).map((x) => x.year)));
+        Array.from(new Set(luifelData.filter((data) => 
+            data.brand == selectedBrand && 
+            data.model == selectedModel)
+            .map((x) => x.year)));
 
     let availableHeights = selectedYear == undefined ? [] :
-        Array.from(new Set(luifelData.filter((data) => data.year == selectedYear).map((x) => x.height)));
+        Array.from(new Set(luifelData.filter((data) => 
+            data.brand == selectedBrand && 
+            data.model == selectedModel && 
+            data.year == selectedYear)
+            .map((x) => x.height)));
 
     let availableLengths = selectedHeight == undefined ? [] :
-        Array.from(new Set(luifelData.filter((data) => data.height == selectedHeight).map((x) => x.length)));
+        Array.from(new Set(luifelData.filter((data) => 
+            data.brand == selectedBrand && 
+            data.model == selectedModel && 
+            data.year == selectedYear && 
+            data.height == selectedHeight)
+            .map((x) => x.length)));
 
     let availableInfos = selectedLength == undefined ? [] :
-        Array.from(new Set(luifelData.filter((data) => data.length == selectedLength).map((x) => x.info)));
+        Array.from(new Set(luifelData.filter((data) => 
+            data.brand == selectedBrand && 
+            data.model == selectedModel && 
+            data.year == selectedYear && 
+            data.height == selectedHeight && 
+            data.length == selectedLength)
+            .map((x) => x.info)));
 
     /** Function to clear the pickers when a higher level picker is changed, for example when the brand is changed, all other pickers will be reset to default value
      * 
@@ -2327,7 +2395,8 @@ export default function LuifelPicker() {
         if (index <= 5) setSelectedInfo("-1");
     }
 
-    function evaluateSearch() {
+    /** Evaluate the selected state and return a list of compatible products by EAN */
+    function evaluateSearch(): string[] {
         let results = luifelData.filter((data) => 
             data.brand == selectedBrand && 
             data.model == selectedModel && 
@@ -2336,134 +2405,115 @@ export default function LuifelPicker() {
             data.length == selectedLength && 
             data.info == selectedInfo);
 
-/*         console.log(skuEANMap);
-        console.log(Object.keys(skuEANMap).length);
-
-
-        let concatList: string[] = [];
-        for (let i = 0; i < luifelData.length; i++) {
-            concatList = concatList.concat(luifelData[i].skus);
-        }
-
-        concatList = Array.from(new Set(concatList));
-
-        console.log(JSON.stringify(concatList)); */
-
         let resultProducts: string[] = [];
         results[0].skus.forEach((sku) => {
             resultProducts.push(eanBySKU[sku]);
         });
-            
-        alert("Search results:" + JSON.stringify(resultProducts));
+
+        return resultProducts;
     }
 
-    function runStuff() {
-/*         let uniqueSKUS: string[] = [];
-        luifelData.forEach((data) => {
-            data.link.forEach((link) => {
-                let linkSKUS = link.split("filter_sku=")
-                linkSKUS.shift();
-                linkSKUS = linkSKUS.map((x) => x.split("&")[0]);
-
-                linkSKUS.forEach((sku) => {
-                    if (!uniqueSKUS.includes(sku)) {
-                    uniqueSKUS.push(sku);
-                    }
-                });
-            });
-        });
-
-        alert(uniqueSKUS.length);
-        console.log(JSON.stringify(uniqueSKUS)); */
-
-        alert(Object.keys(eanBySKU).length);
-
-        console.log(JSON.stringify(luifelData));
+    function validPickerState(): boolean {
+        return selectedBrand !== "-1" 
+        && selectedModel !== "-1" 
+        && selectedYear !== "-1" 
+        && selectedHeight !== "-1" 
+        && selectedLength !== "-1" 
+        && selectedInfo !== "-1";
     }
 
+    if (!fontsLoaded) {
+        return null;
+    }
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.text}>Luifel picker</Text>
+                <Text style={styles.heading}>Zoek uw voertuig</Text>
             </View>
             <View style={styles.body}>
+
+                <Text style={styles.subheading}>Merk</Text>
                 <Picker
+                    style={styles.picker}
                     selectedValue={selectedBrand}
                     onValueChange={(itemValue, itemIndex) => {
                         setSelectedBrand(itemValue);
                         clearPickers(1);
                     }}>
-                        <Picker.Item label="-- Kies een merk --" value={-1} key="" enabled={false} />
-                        {availableBrands.map((brand) => { return (<Picker.Item label={brand} value={brand} key={brand} />) })}
+                        <Picker.Item label="-- Kies een merk --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                        {availableBrands.map((brand) => { return (<Picker.Item label={brand} value={brand} key={brand} style={styles.pickerItem} />) })}
                 </Picker>
 
-                { availableModels.length > 0 ? (
+                    <Text style={styles.subheading}>Model</Text>
                     <Picker
+                        enabled={availableModels.length > 0}
+                        style={styles.picker}
                         selectedValue={selectedModel}
                         onValueChange={(itemValue, itemIndex) => {
                             setSelectedModel(itemValue);
                             clearPickers(2);
-                            }
-                        }>
-                            <Picker.Item label="-- Kies een model --" value={-1} key="" enabled={false} />
-                            {availableModels.map((model) => { return (<Picker.Item label={model} value={model} key={model} />) })}
+                        }}>
+                        <Picker.Item label="-- Kies een model --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                        {availableModels.map((model) => { return (<Picker.Item label={model} value={model} key={model} style={styles.pickerItem} />); })}
                     </Picker>
-                ) : null }
 
-                { availableYears.length > 0 ? (
+                    <><Text style={styles.subheading}>Bouwjaar</Text>
                     <Picker
+                        enabled={availableYears.length > 0}
+                        style={styles.picker}
                         selectedValue={selectedYear}
                         onValueChange={(itemValue, itemIndex) => {
                             setSelectedYear(itemValue);
                             clearPickers(3);
                             }
                         }>
-                            <Picker.Item label="-- Kies een jaar --" value={-1} key="" enabled={false} />
-                            {availableYears.map((year) => { return (<Picker.Item label={year} value={year} key={year} />) })}
-                    </Picker>
-                ) : null }
+                            <Picker.Item label="-- Kies een jaar --" value={-1} key="" enabled={false} style={styles.pickerItem}/>
+                            {availableYears.map((year) => { return (<Picker.Item label={year} value={year} key={year} style={styles.pickerItem} />) })}
+                    </Picker></>
 
-                { availableHeights.length > 0 ? (
+                    <><Text style={styles.subheading}>Hoogte</Text>
                     <Picker
+                        enabled={availableHeights.length > 0}
+                        style={styles.picker}
                         selectedValue={selectedHeight}
                         onValueChange={(itemValue, itemIndex) => {
                                 setSelectedHeight(itemValue);
                                 clearPickers(4);
                             }
                         }>
-                            <Picker.Item label="-- Kies een hoogte --" value={-1} key="" enabled={false} />
-                            {availableHeights.map((height) => { return (<Picker.Item label={height} value={height} key={height} />) })}
-                    </Picker>
-                ) : null }
+                            <Picker.Item label="-- Kies een hoogte --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                            {availableHeights.map((height) => { return (<Picker.Item label={height} value={height} key={height} style={styles.pickerItem} />) })}
+                    </Picker></>
 
-                { availableLengths.length > 0 ? (
+                    <><Text style={styles.subheading}>Lengte</Text>
                     <Picker
+                        enabled={availableLengths.length > 0}
+                        style={styles.picker}
                         selectedValue={selectedLength}
                         onValueChange={(itemValue, itemIndex) => {
                                 setSelectedLength(itemValue);
                                 clearPickers(5);
                             }
                         }>
-                            <Picker.Item label="-- Kies een lengte --" value={-1} key="" enabled={false} />
-                            {availableLengths.map((length) => { return (<Picker.Item label={length} value={length} key={length} />) })}
-                    </Picker>
-                ) : null }
+                            <Picker.Item label="-- Kies een lengte --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                            {availableLengths.map((length) => { return (<Picker.Item label={length} value={length} key={length} style={styles.pickerItem} />) })}
+                    </Picker></>
 
-                { availableInfos.length > 0 ? (
+                    <><Text style={styles.subheading}>Extra info</Text>
                     <Picker
+                        enabled={availableInfos.length > 0}
+                        style={styles.picker}
                         selectedValue={selectedInfo}
                         onValueChange={(itemValue, itemIndex) => {
                                 setSelectedInfo(itemValue);
                             }
                         }>
-                            <Picker.Item label="-- Kies extra info --" value={-1} key="" enabled={false} />
-                            {availableInfos.map((info) => { return (<Picker.Item label={info} value={info} key={info} />) })}
-                    </Picker>
-                ) : null }
-                {/* <Button label="Test stuff" theme="primary" onPress={runStuff} /> */}
+                            <Picker.Item label="-- Kies extra info --" value={-1} key="" enabled={false} style={styles.pickerItem}/>
+                            {availableInfos.map((info) => { return (<Picker.Item label={info} value={info} key={info} style={styles.pickerItem}/>) })}
+                    </Picker></>
             </View>
             <View style={styles.footer}>
-                <Button label="Zoek" theme="primary" onPress={evaluateSearch} />
+                <Button enabled={validPickerState()} label="Zoek" theme="primary" onPress={() => onPress(evaluateSearch())} />
             </View>
         </View>
     );
@@ -2471,26 +2521,64 @@ export default function LuifelPicker() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#929292",
+        backgroundColor: "#fff",
+        minWidth: 400,
+        minHeight: 700,
+        width: "100%",
+        height: "100%",
+        maxWidth: 800,
+        borderRadius: 6,
+        paddingTop: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingBottom: 10,
+        margin: 20,
     },
-    text: {
-        color: "#ffffff",
+    heading: {
+        fontFamily: "Roboto_900Black",
+        color: "#3E5F42",
+        fontSize: 45,
         textAlign: "center",
     },
+    subheading: {
+        fontFamily: "Roboto_500Medium",
+        fontSize: 16,
+        color: "#3E5F42",
+        marginBottom: 5,
+    },
     header: {
-        flex: 1/2,
-        backgroundColor: "blue",
-        justifyContent: "center",
+        minHeight: 50,
+        paddingBottom: 10,
+        //backgroundColor: "lightcoral",
     },
     body: {
         flex: 4,
-        backgroundColor: "green",
+        //paddingHorizontal: 10,
+        backgroundColor: "#eff6f3",
+        borderRadius: 6,
+        padding: 15,
+        //backgroundColor: "lightblue",
     },
     footer: {
-        flex: 1,
-        backgroundColor: "red",
+        flex: 1/2,
+        alignItems: "center",
         justifyContent: "center",
-        alignContent: "center",
-    }
+        paddingTop: 20,
+        paddingBottom: 10,
+        //backgroundColor: "lightgreen",
+    },
+    picker: {
+        marginBottom: 10,
+        height: 54,
+        // Appies to the picker on web
+        fontSize: 16,
+        fontFamily: "Roboto_400Regular",
+        backgroundColor: "#eff6f3",
+        borderColor: "#eff6f3",
+    },
+    pickerItem: {
+        // Applies to the picker on android
+        fontFamily: "Roboto_400Regular",
+        fontSize: 16,
+    },
 });

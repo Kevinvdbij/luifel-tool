@@ -1,12 +1,12 @@
 import LuifelPicker from '@/components/LuifelPicker';
-import { StyleSheet, Text, View } from 'react-native';
+import { router } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 
 export default function LuifelSelection() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Luifel screen</Text>
-      <LuifelPicker />
+      <LuifelPicker onPress={(result) => router.push({ pathname: '/(tabs)/luifel-search/result', params: { ean: result } })}/>
     </View>
   );
 }
@@ -24,5 +24,5 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1/3,
     justifyContent: "flex-end",
-  }
+  },
 });
