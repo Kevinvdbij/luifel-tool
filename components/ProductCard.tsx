@@ -17,15 +17,23 @@ import { Roboto_800ExtraBold_Italic } from '@expo-google-fonts/roboto/800ExtraBo
 import { Roboto_900Black } from '@expo-google-fonts/roboto/900Black';
 import { Roboto_900Black_Italic } from '@expo-google-fonts/roboto/900Black_Italic';
 import { useFonts } from '@expo-google-fonts/roboto/useFonts';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
+import React, { useState } from 'react';
+import { Linking, StyleSheet, Text, View } from 'react-native';
+import Button from './Button';
+import GetProductByEan, { ProductInfo } from './ShopwareIntegration';
 
 type Props = {
-    title?: string;
-    ean?: string;
+    ean: string;
 }
 
-export default function ProductCard({title, ean}: Props) {
+export default function ProductCard({ean}: Props) {
+    let [productInfo, setProductInfo] = useState<ProductInfo>();
+    if (!productInfo) { 
+        GetProductByEan(ean).then(info => setProductInfo(info));
+        
+    }
+
     let [fontsLoaded] = useFonts({
         Roboto_100Thin, 
         Roboto_200ExtraLight, 
@@ -49,15 +57,40 @@ export default function ProductCard({title, ean}: Props) {
 
     if (!fontsLoaded) {
         return null;
-    }
-
+    } 
+    
     return (
         <View style={styles.container}>
-            <View style={styles.header}>    
-                <Text style={styles.title}>{title}</Text>
+            <View style={styles.header}>
+                <Text style={styles.title}>{productInfo?.name || 'Loading...'}</Text>
+            </View>
+            <View style={styles.cover}>
+                <Image style={styles.coverImage} source={productInfo?.imageUrl || ""} contentFit="cover" />
             </View>
             <View style={styles.body}>
-                <Text style={styles.text}>{ean}</Text>
+                <View style={styles.bodyRowContainer}>
+                    <View style={styles.infoContainer}>
+                        <Text style={styles.textSubHeading}>Product Info</Text>
+                        <Text style={styles.text}>Prijs: €{productInfo?.price}</Text>
+                        <Text style={styles.text}>EAN: {productInfo?.ean}</Text>
+                        <Text style={styles.text}>Merk: {productInfo?.manufacturer}</Text>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        {productInfo?.url !== "" ? 
+                            <Button enabled={true}  label="Website" theme="website" onPress={() => {Linking.openURL(productInfo?.url || "")}} /> : null}
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        {productInfo?.manufacturer === "Fiamma" || productInfo?.manufacturer === "" ? 
+                        <Button enabled={true}  label="Fiamma" theme="manufacturer" onPress={() => {
+                            Linking.openURL(("https://www.bade.biz/search?q=") + ean)}}>
+                        </Button> : null}
+
+                        {productInfo?.manufacturer === "Thule" || productInfo?.manufacturer === ""? 
+                        <Button enabled={true}  label="Thule" theme="manufacturer" onPress={() => {
+                            Linking.openURL(("https://www.gimeg.nl/nl-nl/search?q=") + ean)}}>
+                        </Button> : null}
+                    </View>
+                </View>
             </View>
         </View>
     );
@@ -65,9 +98,9 @@ export default function ProductCard({title, ean}: Props) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 320,
-        height: 100,
-        margin: 5,
+        minWidth: 300,
+        minHeight: 300,
+        width: "100%",
     },
     header:{
         flex: 1,
@@ -81,10 +114,19 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0,
         borderTopLeftRadius: 8,
         borderTopRightRadius: 8,
-        minHeight: 30,
+        minHeight: 50,
+    },
+    cover: {
+        flex: 3,
+        borderColor: '#cccccc',
+        borderLeftWidth: 1,
+        borderRightWidth: 1,
+        borderBottomWidth: 1,
+        minHeight: 125
     },
     body: {
         flex: 3,
+        flexDirection: "column",
         borderColor: '#cccccc',
         borderWidth: 1,
         borderTopWidth: 0,
@@ -92,7 +134,8 @@ const styles = StyleSheet.create({
         height: '100%',
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
-        padding: 10,
+        backgroundColor: "#ebebeb",
+        minHeight: 150
     },
     title: {
         color: '#ffffff',
@@ -101,7 +144,35 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#000000',
-        fontSize: 16,
+        fontSize: 14,
         fontFamily: "Roboto_400Regular",
+        paddingInline: 5,
+    },
+    textSubHeading: {
+        fontSize: 16,
+        fontFamily: "Roboto_500Medium",
+        color: "#689F69",
+        paddingBottom: 5,
+    },
+    infoContainer: {
+        flex: 1,
+        paddingInline: 20,
+        paddingBottom:10,
+        minHeight: "auto",
+        justifyContent: "center",
+    },
+    buttonContainer: {
+        flex: 1,
+        alignContent: "center",
+        justifyContent: "center",
+        padding: 5,
+    },
+    bodyRowContainer: {
+        flex: 1,
+        flexDirection: "row"
+    },
+    coverImage: {
+        width: "100%",
+        height: "100%",
     }
 });

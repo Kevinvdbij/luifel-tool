@@ -1,31 +1,40 @@
 import ProductCard from '@/components/ProductCard';
 import { useLocalSearchParams } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 export default function LuifelResult() {
 
    const { ean } = useLocalSearchParams<{ ean: string }>();
-   const eanArray = ean.split(',');
-
-   console.log('EAN array:', eanArray);
+   const eanArray = ean.split(",");
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {eanArray.map((eanValue, index) => (
-        <ProductCard key={index} title="Test product" ean={eanValue} />
+        <View style={styles.productCard}>
+          <ProductCard key={index} ean={eanValue} />
+        </View>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
     backgroundColor: '#ffffff',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignContent: 'center',
+    alignItems: "center"
   },
   text: {
     color: '#000000',
   },
+  productCard: {
+    flex: 1,
+    padding: 20,
+    width: "100%",
+    height: "auto",
+    maxWidth: 800,
+    
+  }
 });
