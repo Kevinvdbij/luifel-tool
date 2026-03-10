@@ -1,7 +1,9 @@
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
+  return <Redirect href="/(tabs)/luifel-search" />
+  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home screen</Text>

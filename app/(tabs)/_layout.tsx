@@ -23,16 +23,16 @@ export default function TabLayout() {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
+          href: null,
           }} />
       <Tabs.Screen
         name="luifel-search" 
         options={{
-          title: 'Luifels',
+          title: 'Cassetteluifels',
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'car-sharp' : 'car-outline'} color={color} size={24} />
           ),
           headerShown: false
         }} />
-
     </Tabs>);
 }

@@ -1,4 +1,4 @@
-import LuifelPicker from '@/components/LuifelPicker';
+import LuifelPicker from '@/components/LuifelSearch';
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 

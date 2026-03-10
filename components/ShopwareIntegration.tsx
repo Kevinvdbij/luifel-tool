@@ -11,6 +11,7 @@ export type ProductInfo = {
     manufacturer: string,
 }
 
+/** Retrieve product info from Shopware with EAN number */
 export default async function GetProductByEan(ean: string): Promise<ProductInfo> {
     // Define the request URL and options for the Shopware API
     const url = shopwareApiUrl + "store-api/product";

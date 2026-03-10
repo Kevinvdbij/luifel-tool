@@ -19,19 +19,19 @@ import { Roboto_900Black_Italic } from '@expo-google-fonts/roboto/900Black_Itali
 import { useFonts } from '@expo-google-fonts/roboto/useFonts';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import { Linking, StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
 import Button from './Button';
 import GetProductByEan, { ProductInfo } from './ShopwareIntegration';
 
 type Props = {
     ean: string;
+    style: StyleProp<ViewStyle>;
 }
 
-export default function ProductCard({ean}: Props) {
+export default function ProductCard({ean, style}: Props) {
     let [productInfo, setProductInfo] = useState<ProductInfo>();
     if (!productInfo) { 
-        GetProductByEan(ean).then(info => setProductInfo(info));
-        
+        GetProductByEan(ean).then(info => { setProductInfo(info) });
     }
 
     let [fontsLoaded] = useFonts({
@@ -60,35 +60,37 @@ export default function ProductCard({ean}: Props) {
     } 
     
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>{productInfo?.name || 'Loading...'}</Text>
-            </View>
-            <View style={styles.cover}>
-                <Image style={styles.coverImage} source={productInfo?.imageUrl || ""} contentFit="cover" />
-            </View>
-            <View style={styles.body}>
-                <View style={styles.bodyRowContainer}>
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.textSubHeading}>Product Info</Text>
-                        <Text style={styles.text}>Prijs: €{productInfo?.price}</Text>
-                        <Text style={styles.text}>EAN: {productInfo?.ean}</Text>
-                        <Text style={styles.text}>Merk: {productInfo?.manufacturer}</Text>
-                    </View>
-                    <View style={styles.buttonContainer}>
-                        {productInfo?.url !== "" ? 
-                            <Button enabled={true}  label="Website" theme="website" onPress={() => {Linking.openURL(productInfo?.url || "")}} /> : null}
-                    </View>
-                    <View style={styles.buttonContainer}>
-                        {productInfo?.manufacturer === "Fiamma" || productInfo?.manufacturer === "" ? 
-                        <Button enabled={true}  label="Fiamma" theme="manufacturer" onPress={() => {
-                            Linking.openURL(("https://www.bade.biz/search?q=") + ean)}}>
-                        </Button> : null}
+        <View style={style}>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.title}>{productInfo?.name || 'Loading...'}</Text>
+                </View>
+                <View style={styles.cover}>
+                    <Image style={styles.coverImage} source={productInfo?.imageUrl || ""} contentFit="cover" />
+                </View>
+                <View style={styles.body}>
+                    <View style={styles.bodyRowContainer}>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.textSubHeading}>Product Info</Text>
+                            <Text style={styles.text}>Prijs: €{productInfo?.price}</Text>
+                            <Text style={styles.text}>EAN: {productInfo?.ean}</Text>
+                            <Text style={styles.text}>Merk: {productInfo?.manufacturer}</Text>
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            {productInfo?.url !== "" ? 
+                                <Button enabled={true}  label="Website" theme="website" onPress={() => {Linking.openURL(productInfo?.url || "")}} /> : null}
+                        </View>
+                        <View style={styles.buttonContainer}>
+                            {productInfo?.manufacturer === "Fiamma" || productInfo?.manufacturer === "" ? 
+                            <Button enabled={true}  label="Fiamma" theme="manufacturer" onPress={() => {
+                                Linking.openURL(("https://www.bade.biz/search?q=") + ean)}}>
+                            </Button> : null}
 
-                        {productInfo?.manufacturer === "Thule" || productInfo?.manufacturer === ""? 
-                        <Button enabled={true}  label="Thule" theme="manufacturer" onPress={() => {
-                            Linking.openURL(("https://www.gimeg.nl/nl-nl/search?q=") + ean)}}>
-                        </Button> : null}
+                            {productInfo?.manufacturer === "Thule" || productInfo?.manufacturer === ""? 
+                            <Button enabled={true}  label="Thule" theme="manufacturer" onPress={() => {
+                                Linking.openURL(("https://www.gimeg.nl/nl-nl/search?q=") + ean)}}>
+                            </Button> : null}
+                        </View>
                     </View>
                 </View>
             </View>
@@ -174,5 +176,6 @@ const styles = StyleSheet.create({
     coverImage: {
         width: "100%",
         height: "100%",
+        backgroundColor: "#fff",
     }
 });

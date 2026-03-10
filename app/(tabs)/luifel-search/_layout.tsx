@@ -9,7 +9,7 @@ export default function RootLayout() {
       headerShadowVisible: true,
       headerTintColor: '#ffffff',
     }}>
-      <Stack.Screen name="index" options={{ title: 'Luifel zoeken' }} />
-      <Stack.Screen name="result" options={{ title: 'Resultaat' }} />
+      <Stack.Screen name="index" options={{ title: 'Cassetteluifel Zoeken' }} />
+      <Stack.Screen name="result" options={{ title: 'Gevonden Producten' }} />
     </Stack>);
 }

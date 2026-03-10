@@ -23,8 +23,6 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from "react-native";
 import { getEanBySku, getLuifelData } from './Maps';
 
-
-
 type Props = { 
     onPress: (result: string[]) => void;
 }
@@ -130,7 +128,8 @@ export default function LuifelPicker({ onPress }: Props) {
         return resultProducts;
     }
 
-    function validPickerState(): boolean {
+    /** Check whether the current state of all the pickers is valid */
+    function hasValidPickerState(): boolean {
         return selectedBrand !== "-1" 
         && selectedModel !== "-1" 
         && selectedYear !== "-1" 
@@ -153,7 +152,7 @@ export default function LuifelPicker({ onPress }: Props) {
                         setSelectedBrand(itemValue);
                         clearPickers(1);
                     }}>
-                        <Picker.Item label="-- Kies een merk --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                        {selectedBrand == "-1" ? <Picker.Item label="-- Kies een merk --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
                         {availableBrands.map((brand) => { return (<Picker.Item label={brand} value={brand} key={brand} style={styles.pickerItem} />) })}
                 </Picker>
 
@@ -166,7 +165,7 @@ export default function LuifelPicker({ onPress }: Props) {
                             setSelectedModel(itemValue);
                             clearPickers(2);
                         }}>
-                        <Picker.Item label="-- Kies een model --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                        {selectedModel == "-1" ? <Picker.Item label="-- Kies een model --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
                         {availableModels.map((model) => { return (<Picker.Item label={model} value={model} key={model} style={styles.pickerItem} />); })}
                     </Picker>
 
@@ -180,7 +179,7 @@ export default function LuifelPicker({ onPress }: Props) {
                             clearPickers(3);
                             }
                         }>
-                            <Picker.Item label="-- Kies een jaar --" value={-1} key="" enabled={false} style={styles.pickerItem}/>
+                            {selectedYear == "-1" ? <Picker.Item label="-- Kies een jaar --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
                             {availableYears.map((year) => { return (<Picker.Item label={year} value={year} key={year} style={styles.pickerItem} />) })}
                     </Picker></>
 
@@ -194,7 +193,7 @@ export default function LuifelPicker({ onPress }: Props) {
                                 clearPickers(4);
                             }
                         }>
-                            <Picker.Item label="-- Kies een hoogte --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                            {selectedHeight == "-1" ? <Picker.Item label="-- Kies een hoogte --" value={"-1"} key="" style={styles.pickerItemDisabled} />: null }
                             {availableHeights.map((height) => { return (<Picker.Item label={height} value={height} key={height} style={styles.pickerItem} />) })}
                     </Picker></>
 
@@ -208,7 +207,7 @@ export default function LuifelPicker({ onPress }: Props) {
                                 clearPickers(5);
                             }
                         }>
-                            <Picker.Item label="-- Kies een lengte --" value={-1} key="" enabled={false} style={styles.pickerItem} />
+                            {selectedLength == "-1" ? <Picker.Item label="-- Kies een lengte --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null}
                             {availableLengths.map((length) => { return (<Picker.Item label={length} value={length} key={length} style={styles.pickerItem} />) })}
                     </Picker></>
 
@@ -221,12 +220,12 @@ export default function LuifelPicker({ onPress }: Props) {
                                 setSelectedInfo(itemValue);
                             }
                         }>
-                            <Picker.Item label="-- Kies extra info --" value={-1} key="" enabled={false} style={styles.pickerItem}/>
+                            {selectedInfo == "-1" ? <Picker.Item label="-- Kies extra info --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
                             {availableInfos.map((info) => { return (<Picker.Item label={info} value={info} key={info} style={styles.pickerItem}/>) })}
                     </Picker></>
             </View>
             <View style={styles.footer}>
-                <Button enabled={validPickerState()} label="Zoek" theme="primary" onPress={() => onPress(evaluateSearch())} />
+                <Button enabled={hasValidPickerState()} label="Zoek" theme="primary" onPress={() => onPress(evaluateSearch())} />
             </View>
         </View>
     );
@@ -289,5 +288,11 @@ const styles = StyleSheet.create({
         // Applies to the picker on android
         fontFamily: "Roboto_400Regular",
         fontSize: 16,
+    },
+    pickerItemDisabled: {
+        // Applies to the picker on android
+        fontFamily: "Roboto_400Regular",
+        fontSize: 16,
+        color:"#00000041",
     },
 });
