@@ -12,7 +12,10 @@ export default function TabLayout() {
         headerShadowVisible: true,
         headerTintColor: '#ffffff',
         tabBarStyle: {
-          backgroundColor: '#3E5F42',
+          backgroundColor: '#3E5F42'
+        },
+        tabBarItemStyle: {
+          minHeight:50
         },
       }}
     >

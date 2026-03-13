@@ -17,6 +17,7 @@ import { Roboto_800ExtraBold_Italic } from '@expo-google-fonts/roboto/800ExtraBo
 import { Roboto_900Black } from '@expo-google-fonts/roboto/900Black';
 import { Roboto_900Black_Italic } from '@expo-google-fonts/roboto/900Black_Italic';
 import { useFonts } from '@expo-google-fonts/roboto/useFonts';
+import { openUrl } from '@tauri-apps/plugin-opener';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
 import { Linking, StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
@@ -78,18 +79,29 @@ export default function ProductCard({ean, style}: Props) {
                         </View>
                         <View style={styles.buttonContainer}>
                             {productInfo?.url !== "" ? 
-                                <Button enabled={true}  label="Website" theme="website" onPress={() => {Linking.openURL(productInfo?.url || "")}} /> : null}
+                                <Button enabled={true}  label="Website" theme="website" onPress={() => {
+                                    Linking.openURL(productInfo?.url || "");
+                                    if ("__TAURI_INTERNALS__" in window){
+                                        openUrl(productInfo?.url || "")
+                                    }
+                                }} /> : null}
                         </View>
                         <View style={styles.buttonContainer}>
                             {productInfo?.manufacturer === "Fiamma" || productInfo?.manufacturer === "" ? 
                             <Button enabled={true}  label="Fiamma" theme="manufacturer" onPress={() => {
-                                Linking.openURL(("https://www.bade.biz/search?q=") + ean)}}>
-                            </Button> : null}
+                                Linking.openURL("https://www.bade.biz/search?q=" + ean)
+                                if ("__TAURI_INTERNALS__" in window){
+                                    openUrl("https://www.bade.biz/search?q=" + ean)
+                                }
+                            }}></Button> : null}
 
                             {productInfo?.manufacturer === "Thule" || productInfo?.manufacturer === ""? 
                             <Button enabled={true}  label="Thule" theme="manufacturer" onPress={() => {
-                                Linking.openURL(("https://www.gimeg.nl/nl-nl/search?q=") + ean)}}>
-                            </Button> : null}
+                                Linking.openURL("https://www.gimeg.nl/nl-nl/search?q=" + ean)
+                                if ("__TAURI_INTERNALS__" in window){
+                                    openUrl("https://www.gimeg.nl/nl-nl/search?q=" + ean)
+                                }
+                            }}></Button> : null}
                         </View>
                     </View>
                 </View>

@@ -12,7 +12,8 @@
     "lint": "expo lint",
     "draft": "npx eas-cli@latest workflow:run create-draft.yml",
     "development-builds": "npx eas-cli@latest workflow:run create-development-builds.yml",
-    "deploy": "npx eas-cli@latest workflow:run deploy-to-production.yml"
+    "deploy": "npx eas-cli@latest workflow:run deploy-to-production.yml",
+    "tauri": "tauri"
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.4.3",
@@ -22,6 +23,7 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "@tauri-apps/plugin-opener": "^2.5.3",
     "expo": "~53.0.27",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.8",
