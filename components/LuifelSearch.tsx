@@ -142,90 +142,92 @@ export default function LuifelPicker({ onPress }: Props) {
         return null;
     } return (
         <View style={styles.container}>
-            <View style={styles.body}>
+            <View>
+                <View style={styles.pickerBody}>
 
-                <Text style={styles.subheading}>Merk</Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={selectedBrand}
-                    onValueChange={(itemValue, itemIndex) => {
-                        setSelectedBrand(itemValue);
-                        clearPickers(1);
-                    }}>
-                        {selectedBrand == "-1" ? <Picker.Item label="-- Kies een merk --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
-                        {availableBrands.map((brand) => { return (<Picker.Item label={brand} value={brand} key={brand} style={styles.pickerItem} />) })}
-                </Picker>
-
-                    <Text style={styles.subheading}>Model</Text>
+                    <Text style={styles.subheading}>Merk</Text>
                     <Picker
-                        enabled={availableModels.length > 0}
                         style={styles.picker}
-                        selectedValue={selectedModel}
+                        selectedValue={selectedBrand}
                         onValueChange={(itemValue, itemIndex) => {
-                            setSelectedModel(itemValue);
-                            clearPickers(2);
+                            setSelectedBrand(itemValue);
+                            clearPickers(1);
                         }}>
-                        {selectedModel == "-1" ? <Picker.Item label="-- Kies een model --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
-                        {availableModels.map((model) => { return (<Picker.Item label={model} value={model} key={model} style={styles.pickerItem} />); })}
+                            {selectedBrand == "-1" ? <Picker.Item label="-- Kies een merk --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
+                            {availableBrands.map((brand) => { return (<Picker.Item label={brand} value={brand} key={brand} style={styles.pickerItem} />) })}
                     </Picker>
 
-                    <><Text style={styles.subheading}>Bouwjaar</Text>
-                    <Picker
-                        enabled={availableYears.length > 0}
-                        style={styles.picker}
-                        selectedValue={selectedYear}
-                        onValueChange={(itemValue, itemIndex) => {
-                            setSelectedYear(itemValue);
-                            clearPickers(3);
-                            }
-                        }>
-                            {selectedYear == "-1" ? <Picker.Item label="-- Kies een jaar --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
-                            {availableYears.map((year) => { return (<Picker.Item label={year} value={year} key={year} style={styles.pickerItem} />) })}
-                    </Picker></>
+                        <Text style={styles.subheading}>Model</Text>
+                        <Picker
+                            enabled={availableModels.length > 0}
+                            style={styles.picker}
+                            selectedValue={selectedModel}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setSelectedModel(itemValue);
+                                clearPickers(2);
+                            }}>
+                            {selectedModel == "-1" ? <Picker.Item label="-- Kies een model --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null }
+                            {availableModels.map((model) => { return (<Picker.Item label={model} value={model} key={model} style={styles.pickerItem} />); })}
+                        </Picker>
 
-                    <><Text style={styles.subheading}>Hoogte</Text>
-                    <Picker
-                        enabled={availableHeights.length > 0}
-                        style={styles.picker}
-                        selectedValue={selectedHeight}
-                        onValueChange={(itemValue, itemIndex) => {
-                                setSelectedHeight(itemValue);
-                                clearPickers(4);
-                            }
-                        }>
-                            {selectedHeight == "-1" ? <Picker.Item label="-- Kies een hoogte --" value={"-1"} key="" style={styles.pickerItemDisabled} />: null }
-                            {availableHeights.map((height) => { return (<Picker.Item label={height} value={height} key={height} style={styles.pickerItem} />) })}
-                    </Picker></>
+                        <><Text style={styles.subheading}>Bouwjaar</Text>
+                        <Picker
+                            enabled={availableYears.length > 0}
+                            style={styles.picker}
+                            selectedValue={selectedYear}
+                            onValueChange={(itemValue, itemIndex) => {
+                                setSelectedYear(itemValue);
+                                clearPickers(3);
+                                }
+                            }>
+                                {selectedYear == "-1" ? <Picker.Item label="-- Kies een jaar --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
+                                {availableYears.map((year) => { return (<Picker.Item label={year} value={year} key={year} style={styles.pickerItem} />) })}
+                        </Picker></>
 
-                    <><Text style={styles.subheading}>Lengte</Text>
-                    <Picker
-                        enabled={availableLengths.length > 0}
-                        style={styles.picker}
-                        selectedValue={selectedLength}
-                        onValueChange={(itemValue, itemIndex) => {
-                                setSelectedLength(itemValue);
-                                clearPickers(5);
-                            }
-                        }>
-                            {selectedLength == "-1" ? <Picker.Item label="-- Kies een lengte --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null}
-                            {availableLengths.map((length) => { return (<Picker.Item label={length} value={length} key={length} style={styles.pickerItem} />) })}
-                    </Picker></>
+                        <><Text style={styles.subheading}>Hoogte</Text>
+                        <Picker
+                            enabled={availableHeights.length > 0}
+                            style={styles.picker}
+                            selectedValue={selectedHeight}
+                            onValueChange={(itemValue, itemIndex) => {
+                                    setSelectedHeight(itemValue);
+                                    clearPickers(4);
+                                }
+                            }>
+                                {selectedHeight == "-1" ? <Picker.Item label="-- Kies een hoogte --" value={"-1"} key="" style={styles.pickerItemDisabled} />: null }
+                                {availableHeights.map((height) => { return (<Picker.Item label={height} value={height} key={height} style={styles.pickerItem} />) })}
+                        </Picker></>
 
-                    <><Text style={styles.subheading}>Extra info</Text>
-                    <Picker
-                        enabled={availableInfos.length > 0}
-                        style={styles.picker}
-                        selectedValue={selectedInfo}
-                        onValueChange={(itemValue, itemIndex) => {
-                                setSelectedInfo(itemValue);
-                            }
-                        }>
-                            {selectedInfo == "-1" ? <Picker.Item label="-- Kies extra info --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
-                            {availableInfos.map((info) => { return (<Picker.Item label={info} value={info} key={info} style={styles.pickerItem}/>) })}
-                    </Picker></>
-            </View>
-            <View style={styles.footer}>
-                <Button enabled={hasValidPickerState()} label="Zoek" theme="primary" onPress={() => onPress(evaluateSearch())} />
+                        <><Text style={styles.subheading}>Lengte</Text>
+                        <Picker
+                            enabled={availableLengths.length > 0}
+                            style={styles.picker}
+                            selectedValue={selectedLength}
+                            onValueChange={(itemValue, itemIndex) => {
+                                    setSelectedLength(itemValue);
+                                    clearPickers(5);
+                                }
+                            }>
+                                {selectedLength == "-1" ? <Picker.Item label="-- Kies een lengte --" value={"-1"} key="" style={styles.pickerItemDisabled} /> : null}
+                                {availableLengths.map((length) => { return (<Picker.Item label={length} value={length} key={length} style={styles.pickerItem} />) })}
+                        </Picker></>
+
+                        <><Text style={styles.subheading}>Extra info</Text>
+                        <Picker
+                            enabled={availableInfos.length > 0}
+                            style={styles.picker}
+                            selectedValue={selectedInfo}
+                            onValueChange={(itemValue, itemIndex) => {
+                                    setSelectedInfo(itemValue);
+                                }
+                            }>
+                                {selectedInfo == "-1" ? <Picker.Item label="-- Kies extra info --" value={"-1"} key="" style={styles.pickerItemDisabled}/> : null}
+                                {availableInfos.map((info) => { return (<Picker.Item label={info} value={info} key={info} style={styles.pickerItem}/>) })}
+                        </Picker></>
+                </View>
+                <View style={styles.footer}>
+                    <Button enabled={hasValidPickerState()} label="Zoek" theme="primary" onPress={() => onPress(evaluateSearch())} />
+                </View>
             </View>
         </View>
     );
@@ -233,7 +235,6 @@ export default function LuifelPicker({ onPress }: Props) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#fff",
         minWidth: 400,
         minHeight: 700,
         width: "100%",
@@ -262,18 +263,17 @@ const styles = StyleSheet.create({
         minHeight: 50,
         paddingBottom: 10,
     },
-    body: {
-        flex: 4,
+    pickerBody: {
+        flex: 1,
         backgroundColor: "#eff6f3",
         borderRadius: 6,
         padding: 15,
+        paddingBottom: 0,
     },
     footer: {
-        flex: 1/2,
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: 20,
-        paddingBottom: 10,
+        paddingTop: 15,
     },
     picker: {
         marginBottom: 10,

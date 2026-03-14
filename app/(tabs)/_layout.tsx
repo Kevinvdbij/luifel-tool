@@ -1,7 +1,16 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Tabs } from "expo-router";
+import { Stack, Tabs } from "expo-router";
+import { useWindowDimensions } from 'react-native';
 
 export default function TabLayout() {
+
+  const {height, width} = useWindowDimensions();
+
+  return (
+  <Stack>
+    <Stack.Screen name="luifel-search" options={{headerShown: false}} />
+  </Stack>);
+
   return (
     <Tabs
       screenOptions={{
@@ -17,6 +26,7 @@ export default function TabLayout() {
         tabBarItemStyle: {
           minHeight:50
         },
+        //tabBarPosition: width < 800 ? "bottom" : "left",
       }}
     >
       <Tabs.Screen
@@ -35,7 +45,7 @@ export default function TabLayout() {
           tabBarIcon: ({color, focused}) => (
             <Ionicons name={focused ? 'car-sharp' : 'car-outline'} color={color} size={24} />
           ),
-          headerShown: false
+          headerShown: false,
         }} />
     </Tabs>);
 }
