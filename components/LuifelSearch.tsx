@@ -236,16 +236,14 @@ export default function LuifelPicker({ onPress }: Props) {
 const styles = StyleSheet.create({
     container: {
         minWidth: 400,
-        minHeight: 700,
+        minHeight: 600,
         width: "100%",
         height: "100%",
         maxWidth: 800,
         borderRadius: 6,
-        paddingTop: 10,
+        paddingTop: 20,
         paddingLeft: 20,
         paddingRight: 20,
-        paddingBottom: 10,
-        margin: 20,
     },
     heading: {
         fontFamily: "Roboto_900Black",

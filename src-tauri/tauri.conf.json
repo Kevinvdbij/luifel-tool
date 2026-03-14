@@ -14,9 +14,9 @@
       {
         "title": "Luifel Tool",
         "minWidth": 500,
-        "minHeight": 800,
+        "minHeight": 725,
         "width": 500,
-        "height": 600,
+        "height": 725,
         "resizable": true,
         "fullscreen": false
       }
